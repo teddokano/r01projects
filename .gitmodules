@@ -34,3 +34,9 @@
 [submodule "mcxN_r01lib_SPI"]
 	path = mcxN_r01lib_SPI
 	url = https://github.com/teddokano/mcxN_r01lib_SPI.git
+[submodule "mcxA_I3C_P3T1755_demo"]
+	path = mcxA_I3C_P3T1755_demo
+	url = https://github.com/teddokano/mcxA_I3C_P3T1755_demo.git
+[submodule "mcxN_I3C_P3T1755_demo"]
+	path = mcxN_I3C_P3T1755_demo
+	url = https://github.com/teddokano/mcxN_I3C_P3T1755_demo.git
