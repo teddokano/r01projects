@@ -1,0 +1,45 @@
+[submodule "mcxA_r01lib_SPI"]
+	path = mcxA_r01lib_SPI
+	url = https://github.com/teddokano/mcxA_r01lib_SPI.git
+[submodule "mcxA_r01lib_Ticker"]
+	path = mcxA_r01lib_Ticker
+	url = https://github.com/teddokano/mcxA_r01lib_Ticker.git
+[submodule "mcxA_r01lib_InterruptIn"]
+	path = mcxA_r01lib_InterruptIn
+	url = https://github.com/teddokano/mcxA_r01lib_InterruptIn.git
+[submodule "mcxA_r01lib_I2C"]
+	path = mcxA_r01lib_I2C
+	url = https://github.com/teddokano/mcxA_r01lib_I2C.git
+[submodule "mcxA_r01lib_DigitalOut"]
+	path = mcxA_r01lib_DigitalOut
+	url = https://github.com/teddokano/mcxA_r01lib_DigitalOut.git
+[submodule "mcxA_ARD_PCA995x_with_LED_class"]
+	path = mcxA_ARD_PCA995x_with_LED_class
+	url = https://github.com/teddokano/mcxA_ARD_PCA995x_with_LED_class.git
+[submodule "mcxA_ARD_PCA995x"]
+	path = mcxA_ARD_PCA995x
+	url = https://github.com/teddokano/mcxA_ARD_PCA995x.git
+[submodule "mcxA_ARD_PCA9955B_simple"]
+	path = mcxA_ARD_PCA9955B_simple
+	url = https://github.com/teddokano/mcxA_ARD_PCA9955B_simple.git
+[submodule "mcxA_ARD_PCA8561"]
+	path = mcxA_ARD_PCA8561
+	url = https://github.com/teddokano/mcxA_ARD_PCA8561.git
+[submodule "mcxA_ARD_I2C_Device_class_test"]
+	path = mcxA_ARD_I2C_Device_class_test
+	url = https://github.com/teddokano/mcxA_ARD_I2C_Device_class_test.git
+[submodule "mcxA_ARD_PCF2131"]
+	path = mcxA_ARD_PCF2131
+	url = https://github.com/teddokano/mcxA_ARD_PCF2131.git
+[submodule "mcxa_p3t1755_demo"]
+	path = mcxa_p3t1755_demo
+	url = https://github.com/teddokano/mcxa_p3t1755_demo.git
+[submodule "mcxn_p3t1755_demo"]
+	path = mcxn_p3t1755_demo
+	url = https://github.com/teddokano/mcxn_p3t1755_demo.git
+[submodule "mcxa_p3t1755_test"]
+	path = mcxa_p3t1755_test
+	url = https://github.com/teddokano/mcxa_p3t1755_test.git
+[submodule "mcxN_r01lib_SPI"]
+	path = mcxN_r01lib_SPI
+	url = https://github.com/teddokano/mcxN_r01lib_SPI.git
