@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE infoList
+  SYSTEM "crt_infolist.dtd">
+<infoList vendor="NXP">
+   <info name="LPC55S36" chip="LPC55S36">
+      <chip>
+         <name>LPC55S36</name>
+         <family>LPC553x_S3x</family>
+         <vendor>NXP</vendor>
+         <memory id="Flash"
+                 type="Flash"
+                 size="246"
+                 is_ro="true"
+                 can_program="true"/>
+         <memory id="RAM" type="RAM" size="128"/>
+         <memoryInstance id="PROGRAM_FLASH"
+                         derived_from="Flash"
+                         location="0x00000000"
+                         size="0x0003d800"
+                         driver="LPC553x.cfx"/>
+         <memoryInstance id="SRAM"
+                         derived_from="RAM"
+                         location="0x20000000"
+                         size="0x0001c000"/>
+         <memoryInstance id="SRAMX"
+                         derived_from="RAM"
+                         location="0x04000000"
+                         size="0x00004000"/>
+      </chip>
+      <processor>
+         <name gcc_name="cortex-m33">Cortex-M33</name>
+         <family>Cortex-M</family>
+      </processor>
+   </info>
+</infoList>

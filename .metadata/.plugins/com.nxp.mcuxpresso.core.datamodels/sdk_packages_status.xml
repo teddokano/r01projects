@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdk-packages>
+<package hash="1705454936999" path="/Users/tedd/mcuxpresso/02/SDKPackages/SDK_2_15_000_LPCXpresso55S36.zip" schema="manifest-schema/sdk_manifest_v3.14.xsd"/>
+<package hash="1709940137480" path="/Users/tedd/mcuxpresso/02/SDKPackages/SDK_2_14_2_FRDM-MCXA153.zip" schema="manifest-schema/sdk_manifest_v3.14.xsd"/>
+<package hash="1705448545900" path="/Users/tedd/mcuxpresso/02/SDKPackages/SDK_2_15_000_LPCXpresso860MAX.zip" schema="manifest-schema/sdk_manifest_v3.14.xsd"/>
+<package hash="1709940137455" path="/Users/tedd/mcuxpresso/02/SDKPackages/SDK_2_14_0_FRDM-MCXN947.zip" schema="manifest-schema/sdk_manifest_v3.14.xsd"/>
+<package hash="1704470086000" path="/Applications/MCUXpressoIDE_11.9.0_2144/ide/plugins/com.nxp.mcuxpresso.core.datamodels.resources_11.9.0.202307121226/fragments" schema="manifest-schema/sdk_manifest_v3.3.xsd"/>
+<package hash="1704470086000" path="/Applications/MCUXpressoIDE_11.9.0_2144/ide/plugins/com.nxp.mcuxpresso.core.datamodels.resources_11.9.0.202307121226/override" schema="manifest-schema/sdk_manifest_v3.3.xsd"/>
+</sdk-packages>

@@ -1,0 +1,39 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+I2C		i2c;
+
+DigitalOut	rst( D9, 1 );
+DigitalOut	oe(  D8, 0 );
+
+constexpr uint8_t	LEDOUT0_reg	= 0x02;
+constexpr uint8_t	IREFALL_reg	= 0x45;
+constexpr uint8_t	PWM0_reg	= 0x08;
+
+int main(void)
+{
+	constexpr uint8_t	address		= 0xBC >> 1;
+	uint8_t				w_data[]	= { LEDOUT0_reg, 0xAA, 0xAA, 0xAA, 0xAA };	// LEDOUTn setting
+	uint8_t				iref_data[]	= { IREFALL_reg, 0xFF };	// IREFALL setting
+	uint8_t				pwm_data[]	= { PWM0_reg,    0x00 };
+
+	i2c.write( address,    w_data, sizeof(    w_data ) );
+	i2c.write( address, iref_data, sizeof( iref_data ) );
+
+	while ( true )
+	{
+		for ( int i = 0; i < 256; i++ )
+		{
+			pwm_data[ 1 ]	= i;
+			i2c.write( address, pwm_data, sizeof( pwm_data ) );
+			wait( 0.01 );
+		}
+	}
+}

@@ -1,0 +1,63 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+#include	"rtc/PCF2131_I2C.h"
+#include	"rtc/PCF2131_SPI.h"
+#include "rtc/tzcode/strptime.h"
+
+#include	<time.h>
+
+#define		USE_I2C
+#ifdef		USE_I2C
+I2C			i2c;
+PCF2131_I2C	rtc( i2c );
+char		*intf_str	= "I2C";
+#else
+SPI			spi;
+PCF2131_SPI	rtc( spi );
+char		*intf_str	= "SPI";
+#endif
+
+void	set_time( void );
+
+int main(void)
+{
+	PRINTF( "\r***** Hello, PCF2131! (%s interface) *****\r\n", intf_str );
+
+	if ( rtc.oscillator_stop() )
+	{
+		PRINTF( "==== oscillator_stop detected :( ====\r\n" );
+		set_time();
+	}
+	else
+	{
+		PRINTF( "---- RTC has beeing kept running! :) ----\r\n" );
+	}
+
+	set_time();
+
+	while ( true )
+	{
+		time_t current_time = 0;
+
+		current_time	= rtc.time( NULL );
+		PRINTF( "time : %lu, %s", (unsigned long)current_time, ctime(&current_time) );
+		wait( 1 );
+	}
+}
+
+void set_time(void) {
+	const char*	current_time	= "2024-3-18 09:45:37";
+	const char*	format  		= "%Y-%m-%d %H:%M:%S";
+	struct tm	now_tm;
+
+	strptime( current_time, format, &now_tm );
+	rtc.set( &now_tm );
+}

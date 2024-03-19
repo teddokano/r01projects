@@ -1,0 +1,25 @@
+#include	<system_MCXA153.h>
+
+volatile bool	flag	= false;
+
+void SysTick_Handler( void )
+{
+	flag	= true;
+}
+
+int main(void)
+{
+	PRINTF( "%lu\r\n", SystemCoreClock );
+
+	SysTick_Config( SystemCoreClock / 5 );
+
+	while ( true )
+	{
+		if ( flag )
+		{
+			flag	= false;
+			PRINTF( "!\r\n" );
+		}
+	}
+}
+

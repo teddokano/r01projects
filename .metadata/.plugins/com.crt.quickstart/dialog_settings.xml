@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="/Users/tedd/Desktop/demo_code_r01lib_ver0.zip"/>
+			<item value="/Users/tedd/Desktop/r01lib_.zip"/>
+			<item value="/Users/tedd/Desktop/i3c_9th_scl_pulse_fixed_on MCXA.zip"/>
+			<item value="/Users/tedd/Desktop/Untitled.zip"/>
+			<item value="/Users/tedd/Desktop/MCXN947_Project.zip"/>
+			<item value="/Users/tedd/Downloads/mcxa_p3t1755_test-main.zip"/>
+		</list>
+	</section>
+	<section name="com.crt.quickstart.views.wizards.examples.QSExampleSelectionPage">
+		<item key="dirname" value="/Users/tedd/Desktop"/>
+	</section>
+</section>

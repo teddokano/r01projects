@@ -1,0 +1,41 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+extern "C" {
+void SysTick_Handler( void );
+}
+
+#include	<core_cm33.h>
+
+DigitalOut	r( BLUE   );
+
+bool	flag	= false;
+
+void SysTick_Handler( void )
+{
+	flag	= true;
+}
+
+int main(void)
+{
+	SysTick_Config( SystemCoreClock / 5 );
+
+	while ( true )
+	{
+		if ( flag )
+		{
+			flag	= false;
+			PRINTF( "!\r\n" );
+		}
+
+		r	= !r;
+		wait( 0.2 );
+	}
+}

@@ -1,0 +1,31 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+#include	"test_LM75B.h"
+
+
+I2C			i2c;
+test_LM75B	sensor( i2c );
+
+int main(void)
+{
+
+	PRINTF("\r***** Hello, I2C_device! *****");
+
+	while ( true )
+	{
+		for ( int i = 0; i < 256; i++ )
+		{
+			pwm_data[ 1 ]	= i;
+			i2c.write( address, pwm_data, sizeof( pwm_data ) );
+			wait( 0.01 );
+		}
+	}
+}

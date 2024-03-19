@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="srcClock_Hz"/>
+		<list key="findhistory">
+			<item value="g_systickCounter"/>
+			<item value="srcClock_Hz"/>
+			<item value="masterXfer"/>
+			<item value="I3C_MasterTransferBlocking"/>
+			<item value="I3C_MasterWaitForComplete"/>
+			<item value="LPI2C_MASTER_CLOCK_FREQUENCY"/>
+			<item value="BOARD_INITPINS_ARD_D2_GPIO"/>
+			<item value="init_pins"/>
+			<item value="addr"/>
+			<item value="if ( (ibi_addr&#x09;= i3c.check_IBI()) )"/>
+			<item value="temp()"/>
+			<item value="return"/>
+			<item value="PWM0_A0"/>
+			<item value="usec"/>
+			<item value="BOARD_LED_RED_GPIO"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1123"/>
+		<item key="DIALOG_Y_ORIGIN" value="798"/>
+		<item key="DIALOG_WIDTH" value="336"/>
+		<item key="DIALOG_HEIGHT" value="402"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

@@ -1,0 +1,32 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+I2C		i2c;
+
+DigitalOut	a( D18 );
+DigitalOut	b( D19 );
+
+int main(void)
+{
+	uint8_t		w_data[]	= { 0 };
+	uint8_t		r_data[ 2 ];
+
+	while ( true )
+	{
+		i2c.write( 0x4C, w_data, sizeof( w_data ), NO_STOP );
+		i2c.read( 0x4C, r_data, sizeof( r_data ) );
+
+		PRINTF( "0x %02X %02X", r_data[ 0 ], r_data[ 1 ] );
+		a	= 0;
+		b	= 1;
+		a	= 1;
+		b	= 0;
+	}
+}

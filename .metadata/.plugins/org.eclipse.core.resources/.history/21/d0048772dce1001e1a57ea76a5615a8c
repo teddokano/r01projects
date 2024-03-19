@@ -1,0 +1,22 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+#include	<core_cm33.h>
+
+DigitalOut	r( RED   );
+
+int main(void)
+{
+	while ( true )
+	{
+		r	= !r;
+		wait( 0.2 );
+	}
+}

@@ -1,0 +1,36 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+Ticker		t;
+DigitalOut	led( GREEN );
+
+bool	flag_sw;
+bool	flag_pin;
+
+void callback_sw( void )
+{
+	flag_sw		= true;
+}
+
+void callback_pin( void )
+{
+	flag_pin	= true;
+}
+
+InterruptIn	sw( SW2 );
+InterruptIn	pin( D2 );
+
+int main(void)
+{
+	t.attach( callback, 0.1 );
+
+	while ( true )
+		;
+}

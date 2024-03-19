@@ -1,0 +1,49 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+bool	flag0	= false;
+bool	flag1	= false;
+
+void callback0( void )
+{
+	flag0	= true;
+}
+
+void callback1( void )
+{
+	flag1	= true;
+}
+
+InterruptIn	sw2( SW2 );
+InterruptIn	dp2( D2 );
+
+int main(void)
+{
+	sw2.rise( callback_sw2 );
+	dp2.fall( callback_dp2 );
+
+	while ( true )
+	{
+		if ( flag_sw2 )
+		{
+			flag_sw2	= false;
+			PRINTF( "******* SW2 event!\r\n" );
+		}
+
+		if ( flag_dp2 )
+		{
+			flag_dp2	= false;
+			PRINTF( "******* DP2 event!\r\n" );
+		}
+
+		PRINTF( "%d %d\r\n", sw2 & 1, dp2 & 1 );
+		wait( 0.1 );
+	}
+}

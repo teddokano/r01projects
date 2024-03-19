@@ -1,0 +1,132 @@
+/*
+ * Copyright 2017 NXP
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+extern "C"
+{
+
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "fsl_lpspi.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "board.h"
+}
+
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+#define EXAMPLE_LPSPI_MASTER_BASEADDR         (LPSPI1)
+#define EXAMPLE_LPSPI_MASTER_IRQN             (LPSPI1_IRQn)
+#define EXAMPLE_LPSPI_DEALY_COUNT             0xFFFFF
+#define LPSPI_MASTER_CLK_FREQ                 (CLOCK_GetLpspiClkFreq(1))
+#define EXAMPLE_LPSPI_MASTER_PCS_FOR_INIT     (kLPSPI_Pcs1)
+#define EXAMPLE_LPSPI_MASTER_PCS_FOR_TRANSFER (kLPSPI_MasterPcs1)
+#define EXAMPLE_LPSPI_MASTER_IRQHandler       (LPSPI1_IRQHandler)
+#define TRANSFER_SIZE     64U     /*! Transfer dataSize */
+#define TRANSFER_BAUDRATE 500000U /*! Transfer baudrate - 500k */
+
+/*******************************************************************************
+ * Variables
+ ******************************************************************************/
+
+uint8_t masterRxData[TRANSFER_SIZE] = {0U};
+uint8_t masterTxData[TRANSFER_SIZE] = {0U};
+volatile uint32_t g_systickCounter  = 20U;
+/*******************************************************************************
+ * Prototypes
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Code
+ ******************************************************************************/
+void SysTick_Handler(void)
+{
+    if (g_systickCounter != 0U)
+    {
+        g_systickCounter--;
+    }
+}
+
+void spi_init( void )
+{
+	lpspi_master_config_t masterConfig;
+
+	LPSPI_MasterGetDefaultConfig(&masterConfig);
+	masterConfig.baudRate = TRANSFER_BAUDRATE;
+	masterConfig.whichPcs = EXAMPLE_LPSPI_MASTER_PCS_FOR_INIT;
+	masterConfig.pcsToSckDelayInNanoSec        = 1000000000U / (masterConfig.baudRate * 2U);
+	masterConfig.lastSckToPcsDelayInNanoSec    = 1000000000U / (masterConfig.baudRate * 2U);
+	masterConfig.betweenTransferDelayInNanoSec = 1000000000U / (masterConfig.baudRate * 2U);
+
+//    kLPSPI_ClockPolarityActiveHigh = 0U, /*!< CPOL=0. Active-high LPSPI clock (idles low)*/
+//    kLPSPI_ClockPolarityActiveLow  = 1U  /*!< CPOL=1. Active-low LPSPI clock (idles high)*/
+//    kLPSPI_ClockPhaseFirstEdge = 0U, /*!< CPHA=0. Data is captured on the leading edge of the SCK and changed on the
+//    kLPSPI_ClockPhaseSecondEdge = 1U /*!< CPHA=1. Data is changed on the leading edge of the SCK and captured on the
+
+	masterConfig.cpol	= kLPSPI_ClockPolarityActiveHigh;
+//	masterConfig.cpol	= kLPSPI_ClockPolarityActiveLow;
+	masterConfig.cpha	= kLPSPI_ClockPhaseFirstEdge;
+//	masterConfig.cpha	= kLPSPI_ClockPhaseSecondEdge;
+
+	LPSPI_MasterInit(EXAMPLE_LPSPI_MASTER_BASEADDR, &masterConfig, LPSPI_MASTER_CLK_FREQ);
+}
+
+void spi_write2( uint8_t *wp, uint8_t *rp, int length )
+{
+    lpspi_transfer_t	masterXfer;
+
+    masterXfer.txData		= wp;
+    masterXfer.rxData		= rp;
+    masterXfer.dataSize		= length;
+    masterXfer.configFlags	= EXAMPLE_LPSPI_MASTER_PCS_FOR_TRANSFER | kLPSPI_MasterPcsContinuous | kLPSPI_MasterByteSwap;
+
+    LPSPI_MasterTransferBlocking( EXAMPLE_LPSPI_MASTER_BASEADDR, &masterXfer );
+}
+
+int main(void)
+{
+    /* Attach peripheral clock */
+    CLOCK_SetClockDiv(kCLOCK_DivLPSPI1, 1u);
+    CLOCK_AttachClk(kFRO12M_to_LPSPI1);
+
+    BOARD_InitPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    PRINTF("LPSPI board to board polling example.\r\n");
+    PRINTF("This example use one board as master and another as slave.\r\n");
+    PRINTF("Master uses polling way and slave uses interrupt way. \r\n");
+    PRINTF("Please make sure you make the correct line connection. Basically, the connection is: \r\n");
+    PRINTF("Please make sure you make the correct line connection. Basically, the connection is: \r\n");
+    PRINTF("LPSPI_master --  LPSPI_slave   \r\n");
+    PRINTF("   CLK       --    CLK  \r\n");
+    PRINTF("   PCS       --    PCS \r\n");
+    PRINTF("   SOUT      --    SIN  \r\n");
+    PRINTF("   SIN       --    SOUT \r\n");
+    PRINTF("   GND       --    GND \r\n");
+
+    uint32_t srcClock_Hz;
+    uint32_t errorCount;
+    uint32_t loopCount = 1U;
+    uint32_t i;
+    lpspi_master_config_t masterConfig;
+    lpspi_transfer_t masterXfer;
+
+	spi_init();
+
+	while (1)
+    {
+        for (i = 0U; i < TRANSFER_SIZE; i++)
+        {
+            masterTxData[i] = (i + loopCount) % 256U;
+            masterRxData[i] = 0U;
+        }
+
+
+        spi_write( masterTxData, masterRxData, TRANSFER_SIZE );
+	}
+}

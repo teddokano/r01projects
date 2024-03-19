@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mcxa_p3t1755_demo/source/mcxa_p3t1755_demo.cpp&apos; to &apos;main.cpp&apos;" description="Rename resource &apos;mcxa_p3t1755_demo.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="source/mcxa_p3t1755_demo.cpp" name="main.cpp" stamp="1709533200427" updateReferences="true"/>
+</session>

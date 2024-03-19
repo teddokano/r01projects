@@ -1,0 +1,20 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+
+SPI			spi( 1000000, 0 );	//	SCK frequency, mode
+
+int main(void)
+{
+	uint8_t	write_data[]	= { 0x00, 0x01, 0x02, 0x03, 0xFF, 0xFE, 0xFD, 0xFC };
+	uint8_t	read_data[]		= { 0x00 };
+
+	spi.write( write_data, read_data, sizeof( write_data ) )
+}
+

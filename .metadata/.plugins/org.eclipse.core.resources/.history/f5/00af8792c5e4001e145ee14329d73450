@@ -1,0 +1,83 @@
+/*
+ * Copyright 2024 Tedd OKANO
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include	"r01lib.h"
+r01lib_start;	/* *** place this word before making instance of r01lib classes *** */
+#include	<time.h>
+#include	<typeinfo>
+
+#define		USE_I2C
+#ifdef		USE_I2C
+
+#include	"PCF2131_I2C.h"
+I2C			intf;
+PCF2131	rtc( intf );
+char		*intf_str	= "I2C";
+
+#else
+
+#include	"PCF2131_SPI.h"
+SPI			intf;
+PCF2131		rtc( intf );
+char		*intf_str	= "SPI";
+
+#endif
+
+void	set_time( void );
+
+int main(void)
+{
+	PRINTF( "\r***** Hello, PCF2131! (%s interface) *****\r\n", intf_str );
+	I2C *sample = dynamic_cast<I2C*>( &intf );
+
+	if ( sample )
+		PRINTF( "It's I2C\r\n" );
+	else
+		PRINTF( "It's non I2C\r\n" );
+
+
+	if ( rtc.oscillator_stop() )
+	{
+		PRINTF( "==== oscillator_stop detected :( ====\r\n" );
+		set_time();
+	}
+	else
+	{
+		PRINTF( "---- RTC has beeing kept running! :) ----\r\n" );
+	}
+
+	while ( true )
+	{
+		time_t current_time = 0;
+
+		current_time	= rtc.time( NULL );
+		PRINTF( "time : %lu, %s", (unsigned long)current_time, ctime(&current_time) );
+		wait( 1 );
+	}
+}
+
+void set_time(void) {
+#if 0
+	const char* current_time  = "2024-3-18 09:45:37";
+	const char* format  = "%Y-%m-%d %H:%M:%S";
+	struct tm	tmv;
+	strptime( current_time, format, &tmv );
+#else
+	struct tm now_tm;
+
+	now_tm.tm_year	= 2024 - 1900;
+	now_tm.tm_mon	= 3 - 1;  // It needs to be '3' if April
+	now_tm.tm_mday	= 18;
+	now_tm.tm_hour	= 9;
+	now_tm.tm_min	= 45;
+	now_tm.tm_sec	= 37;
+
+	rtc.set(&now_tm);
+
+	PRINTF( "RTC got time information\r\n" );
+#endif
+}
