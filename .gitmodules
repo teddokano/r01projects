@@ -43,3 +43,6 @@
 [submodule "mcxA_ARD_PCAL6534_interrupt"]
 	path = mcxA_ARD_PCAL6534_interrupt
 	url = https://github.com/teddokano/mcxA_ARD_PCAL6534_interrupt.git
+[submodule "mcxA_ARD_PCF2131_interrupt"]
+	path = mcxA_ARD_PCF2131_interrupt
+	url = https://github.com/teddokano/mcxA_ARD_PCF2131_interrupt.git
