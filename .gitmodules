@@ -46,3 +46,6 @@
 [submodule "mcxA_ARD_PCF2131_interrupt"]
 	path = mcxA_ARD_PCF2131_interrupt
 	url = https://github.com/teddokano/mcxA_ARD_PCF2131_interrupt.git
+[submodule "mcxN_I3C_P3T1755_demo_DAA"]
+	path = mcxN_I3C_P3T1755_demo_DAA
+	url = https://github.com/teddokano/r01projects.git
